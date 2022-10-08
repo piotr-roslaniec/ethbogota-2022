@@ -15,8 +15,9 @@
     "snap.manifest.json"
   ],
   "scripts": {
-    "build": "mm-snap build",
+    "build": "yarn build:wasm && mm-snap build",
     "build:clean": "yarn clean && yarn build",
+    "build:wasm": "node ./scripts/wasm-encode.js && du -h src/wasm_*",
     "build:website": "node ./scripts/build-website.js",
     "clean": "rimraf dist",
     "lint": "yarn lint:eslint && yarn lint:misc --check",
@@ -25,6 +26,11 @@
     "lint:misc": "prettier '**/*.json' '**/*.md' '!CHANGELOG.md' --ignore-path .gitignore",
     "serve": "mm-snap serve",
     "start": "mm-snap watch"
+  },
+  "dependencies": {
+    "@metamask/key-tree": "^5.0.2",
+    "sha3": "^2.1.4",
+    "wasm-bundler": "workspace:*"
   },
   "devDependencies": {
     "@lavamoat/allow-scripts": "^2.0.3",

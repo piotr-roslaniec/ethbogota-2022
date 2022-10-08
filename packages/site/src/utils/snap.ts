@@ -73,3 +73,16 @@ export const sendHello = async () => {
 };
 
 export const isLocalSnap = (snapId: string) => snapId.startsWith('local:');
+
+export const sendGetNullifier = async (message: string) => {
+  return await window.ethereum.request({
+    method: 'wallet_invokeSnap',
+    params: [
+      defaultSnapOrigin,
+      {
+        method: 'get_nullifier',
+        params: [message],
+      },
+    ],
+  });
+};

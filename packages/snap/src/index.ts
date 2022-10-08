@@ -1,41 +1,36 @@
 import { OnRpcRequestHandler } from '@metamask/snap-types';
+import { ethErrors } from 'eth-rpc-errors';
+import { InitOutput } from 'wasm-bundler';
+import { JsonBIP44CoinTypeNode as Bip44Node } from '@metamask/key-tree';
 
-/**
- * Get a message from the origin. For demonstration purposes only.
- *
- * @param originString - The origin string.
- * @returns A message based on the origin.
- */
-export const getMessage = (originString: string): string =>
-  `Hello, ${originString}!`;
+import * as handlers from './handlers';
+import { initializeWasm } from './wasm';
 
-/**
- * Handle incoming JSON-RPC requests, sent through `wallet_invokeSnap`.
- *
- * @param args - The request handler args as object.
- * @param args.origin - The origin of the request, e.g., the website that
- * invoked the snap.
- * @param args.request - A validated JSON-RPC request object.
- * @returns `null` if the request succeeded.
- * @throws If the request method is not valid for this snap.
- * @throws If the `snap_confirm` call failed.
- */
-export const onRpcRequest: OnRpcRequestHandler = ({ origin, request }) => {
+let wasm: InitOutput;
+let entropy: Bip44Node;
+
+export const onRpcRequest: OnRpcRequestHandler = async ({
+  origin,
+  request,
+}) => {
+  if (!wasm) {
+    // eslint-disable-next-line require-atomic-updates
+    wasm = await initializeWasm();
+  }
+
+  if (!entropy) {
+    // eslint-disable-next-line require-atomic-updates
+    entropy = await wallet.request({
+      method: `snap_getBip44Entropy_12345`,
+    });
+  }
+
   switch (request.method) {
     case 'hello':
-      return wallet.request({
-        method: 'snap_confirm',
-        params: [
-          {
-            prompt: getMessage(origin),
-            description:
-              'This custom confirmation is just for display purposes.',
-            textAreaContent:
-              'But you can edit the snap source code to make it do something, if you want to!',
-          },
-        ],
-      });
+      return handlers.helloHandler(origin);
+    case 'get_nullifier':
+      return handlers.getNullifier(request.params as unknown[], entropy);
     default:
-      throw new Error('Method not found.');
+      throw ethErrors.rpc.methodNotFound({ data: request });
   }
 };

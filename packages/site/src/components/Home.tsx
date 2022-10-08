@@ -1,11 +1,13 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
 import { MetamaskActions, MetaMaskContext } from '../hooks';
+// import { generateProof } from '../proof';
 import {
   connectSnap,
   getSnap,
   sendHello,
   shouldDisplayReconnectButton,
+  sendGetNullifier,
 } from '../utils';
 import {
   ConnectButton,
@@ -126,6 +128,22 @@ export const Home = () => {
     }
   };
 
+  const handleMakeProofClick = async () => {
+    try {
+      const message = 'abc';
+      const nullifier = await sendGetNullifier(message);
+      console.log({ nullifier });
+      // const input = {
+      //   nullifier,
+      // };
+      // const proofFilename = '';
+      // generateProof(nullifier, proofFilename);
+    } catch (e) {
+      console.error(e);
+      dispatch({ type: MetamaskActions.SetError, payload: e });
+    }
+  };
+
   return (
     <Container>
       <Heading>
@@ -191,6 +209,21 @@ export const Home = () => {
             button: (
               <SendHelloButton
                 onClick={handleSendHelloClick}
+                disabled={false}
+              />
+            ),
+          }}
+          disabled={false}
+          fullWidth={false}
+        />
+        <Card
+          content={{
+            title: 'Create a proof',
+            description:
+              'Create a proof using an external nullifier made by the snap.',
+            button: (
+              <SendHelloButton
+                onClick={handleMakeProofClick}
                 disabled={false}
               />
             ),
