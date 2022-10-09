@@ -12,7 +12,7 @@
   },
   "license": "GPL-3.0",
   "dependencies": {
-    "zk-nullifier": "file:../../../zk-nullifier-sig/rust-k256/pkg"
+    "zk-nullifier": "0.1.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^22.0.0",

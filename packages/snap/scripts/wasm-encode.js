@@ -3,7 +3,7 @@ const path = require('path');
 
 const WASM_PATH = path.join(
   __dirname,
-  '../../../../zk-nullifier-sig/rust-k256/pkg/zk_nullifier_bg.wasm',
+  '../../../node_modules/zk-nullifier/zk_nullifier_bg.wasm',
 );
 
 // eslint-disable-next-line jsdoc/require-jsdoc

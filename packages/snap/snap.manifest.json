@@ -7,12 +7,12 @@
     "url": "https://github.com/MetaMask/template-snap-monorepo.git"
   },
   "source": {
-    "shasum": "TdVi73pmAXzrp6PVfUBn4EPmq33aVNs6lyhbZPRiRG0=",
+    "shasum": "FTPb0Ot/jslPcMEr9PM/KXCuauIJXJt0jPOZRyCCKR4=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
         "iconPath": "images/icon.svg",
-        "packageName": "snap",
+        "packageName": "zk-nullifier-snap",
         "registry": "https://registry.npmjs.org/"
       }
     }
