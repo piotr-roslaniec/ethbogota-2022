@@ -1,6 +1,6 @@
 {
   "name": "wasm-bundler",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "description": "A bundler for wasm-pack dependencies",
   "license": "GPL-3.0",
@@ -12,7 +12,7 @@
     "build": "rollup -c"
   },
   "dependencies": {
-    "zk-nullifier": "0.1.0"
+    "zk-nullifier": "0.1.1"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^22.0.0",
