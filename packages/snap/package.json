@@ -1,6 +1,6 @@
 {
   "name": "zk-nullifier-snap",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The 'Hello, world!' of MetaMask Snaps, now written in TypeScript.",
   "repository": {
     "type": "git",
