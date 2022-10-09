@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@metamask/key-tree": "^5.0.2",
+    "eth-rpc-errors": "^4.0.3",
     "sha3": "^2.1.4",
     "wasm-bundler": "workspace:*"
   },

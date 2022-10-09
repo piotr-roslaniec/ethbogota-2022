@@ -21,7 +21,7 @@ export const onRpcRequest: OnRpcRequestHandler = async ({
   if (!entropy) {
     // eslint-disable-next-line require-atomic-updates
     entropy = await wallet.request({
-      method: `snap_getBip44Entropy_12345`,
+      method: `snap_getBip44Entropy_60`,
     });
   }
 

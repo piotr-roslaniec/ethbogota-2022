@@ -1,16 +1,16 @@
 {
   "name": "wasm-bundler",
   "version": "0.1.0",
+  "private": true,
   "description": "A bundler for wasm-pack dependencies",
+  "license": "GPL-3.0",
+  "author": "Piotr Roslaniec <p.roslaniec@gmail.com>",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "browser": "dist/index.js",
-  "private": true,
-  "author": "Piotr Roslaniec <p.roslaniec@gmail.com>",
   "scripts": {
     "build": "rollup -c"
   },
-  "license": "GPL-3.0",
   "dependencies": {
     "zk-nullifier": "0.1.0"
   },
